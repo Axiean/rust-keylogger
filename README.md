@@ -24,24 +24,6 @@ The project is split into two components:
 
 ---
 
-## 📂 Project Structure
-
-Keylogger/
-├── src/
-│ ├── main.rs # Main keylogger logic
-│ └── bin/
-│ └── binder.rs # PDF + SCR binder
-├── assets/
-│ ├── resume.pdf # Decoy PDF
-│ └── win_payload.scr # Keylogger executable (renamed)
-├── config/
-│ └── webhook.url # Your Discord webhook URL (plaintext)
-├── Cargo.toml
-├── README.md
-└── target/ # Cargo build output
-
----
-
 ## ⚙️ Requirements
 
 - Rust (latest stable recommended) → [Install Rust](https://www.rust-lang.org/tools/install)
@@ -81,3 +63,85 @@ Rename the resulting file:
 ```bash
 mv target/release/keylogger.exe assets/win_payload.scr
 ```
+
+### 4. Compile the Binder Binary
+
+```bash
+cargo build --release --bin binder
+```
+
+You’ll get target/release/binder.exe , this is your final payload that runs the decoy and background logger.
+
+---
+
+## 🧪 Testing Instructions
+
+1. Use a Virtual Machine or Isolated Environment (NEVER run this on your main OS).
+
+2. Run binder.exe. The PDF will open as expected.
+
+3. Meanwhile, the keylogger will silently start, capturing keystrokes and sending logs to your Discord channel.
+
+4. Every 10 minutes, logs are flushed to the webhook and the local file is cleared.
+
+---
+
+## ❗ Ethical Usage Reminder
+
+This project is a learning tool for red teamers, malware analysts, and ethical hackers to:
+
+- Understand keylogging mechanisms.
+
+- Simulate social engineering via file binding.
+
+- Build stronger blue team detection strategies.
+
+By using or cloning this project, you agree to use it solely in ethical, permitted environments, such as:
+
+- Your own systems or VMs
+
+- Offensive security labs
+
+- Red team exercises with explicit permission
+
+---
+
+## 🛡️ Blue Team Mitigation Insights
+
+This tool demonstrates real-world attacker behavior, which can be detected through:
+
+- Monitoring abnormal .scr execution
+
+- Detecting outbound traffic to Discord domains
+
+- Watching for GetAsyncKeyState or CreateFileA usage
+
+- Application whitelisting or endpoint behavior analytics (EDR)
+
+---
+
+## 🧠 Ideas for Future Improvements
+
+- 🔐 Encrypt logs before sending.
+
+- 📦 Use a custom packer to obfuscate binary.
+
+- 🧬 Add persistence via registry or scheduled tasks.
+
+- 🎭 Use process injection or memory-only execution for stealth.
+
+- 🗝️ Include anti-debugging or sandbox evasion routines.
+
+---
+
+## 📢 Disclaimer
+
+This project is intended exclusively for:
+
+- Red Team education
+
+- Blue Team defense simulation
+
+- Malware analysis training
+
+Any misuse of this tool, including unauthorized deployment, violates the ethical use policy and may be illegal in your country. The author assumes no liability for misuse.
